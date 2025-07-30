@@ -131,3 +131,37 @@ function renderItems() {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initMenu);
+
+
+
+
+// Initialize Menu
+async function initMenu() {
+  try {
+    const response = await fetch('menu.json');
+    menuData = await response.json();
+    console.log('Loaded menu from network');
+  } catch (error) {
+    console.log('Network error, trying cache...');
+    try {
+      const cache = await caches.open('zm-menu-cache');
+      const cachedResponse = await cache.match('menu.json');
+      
+      if (cachedResponse) {
+        menuData = await cachedResponse.json();
+        console.log('Loaded menu from cache');
+      } else {
+        throw new Error('No cached menu available');
+      }
+    } catch (cacheError) {
+      console.error('Error loading menu:', cacheError);
+      categoriesView.innerHTML = `
+        <div class="col-span-full text-center py-12">
+          <h3 class="text-xl font-semibold text-red-500">Menu failed to load</h3>
+          <p class="text-gray-500 mt-2">Please check your connection</p>
+        </div>
+      `;
+      return;
+    }
+  }
+}
