@@ -49,6 +49,7 @@ function renderCategories() {
     
     categoryCard.addEventListener('click', () => showCategoryItems(category.id));
     categoriesView.appendChild(categoryCard);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
@@ -68,6 +69,8 @@ function showCategoryItems(categoryId) {
   
   // Render items
   renderItems();
+  // FIX: Scroll to top of the page
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Show Categories View
@@ -76,6 +79,7 @@ function showCategoriesView() {
   categoriesView.classList.remove('hidden');
   backButton.classList.add('hidden');
   currentCategory.classList.add('hidden');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // Render Menu Items
@@ -108,7 +112,7 @@ function renderItems() {
       <div class="p-4 flex-grow flex flex-col">
         <div class="flex justify-between items-start mb-2">
           <h3 class="text-lg font-bold text-gray-800 line-clamp-1">${item.name}</h3>
-          <span class="text-base font-semibold text-amber-600 shrink-0 ml-2">$${item.price.toFixed(2)}</span>
+          <span class="text-base font-semibold text-amber-600 shrink-0 ml-2">${item.price} IQD</span>
         </div>
         
         <p class="text-gray-600 text-sm line-clamp-2 sm:line-clamp-3 mb-3 flex-grow">${item.description}</p>

@@ -32,7 +32,7 @@
       "id": 1,
       "name": "Margherita Pizza",
       "description": "Classic pizza with tomato sauce and mozzarella",
-      "price": 12.99,
+      "price": 13000,
       "category": "warm-food",
       "image": "images/margherita.jpg"
     },
@@ -40,7 +40,7 @@
       "id": 2,
       "name": "Caesar Salad",
       "description": "Fresh romaine with Caesar dressing",
-      "price": 8.99,
+      "price": 7500,
       "category": "cold-food",
       "image": "images/caesar.jpg"
     },
@@ -48,7 +48,7 @@
       "id": 3,
       "name": "Mojito",
       "description": "Refreshing mint cocktail",
-      "price": 7.50,
+      "price": 5000,
       "category": "drinks",
       "image": "images/mojito.jpg"
     },
@@ -56,9 +56,41 @@
       "id": 4,
       "name": "Double Apple Hookah",
       "description": "Traditional apple flavored tobacco",
-      "price": 15.00,
+      "price": 12500,
       "category": "hookah",
       "image": "images/hookah-apple.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Harissa Grilled Chicken",
+      "description": "Spicy North African marinated chicken with roasted vegetables",
+      "price": 17000,
+      "category": "warm-food",
+      "image": "images/grilled-harrisa.jpg"
+    },
+    {
+      "id": 6,
+      "name": "Ahi Tuna Poke Bowl",
+      "description": "Sashimi-grade tuna, avocado, edamame, and sesame over sushi rice",
+      "price": 13500,
+      "category": "cold-food",
+      "image": "images/tuna-poke.jpg"
+    },
+    {
+      "id": 7,
+      "name": "Berry Hibiscus Fizz",
+      "description": "Hibiscus tea with mixed berries and sparkling water",
+      "price": 8500,
+      "category": "drinks",
+      "image": "images/berry-fizz.jpg"
+    },
+    {
+      "id": 8,
+      "name": "Tropical Sunset",
+      "description": "Mango, passionfruit, and coconut blend",
+      "price": 13500,
+      "category": "hookah",
+      "image": "images/hookah-multi.jpg"
     }
   ]
 }
