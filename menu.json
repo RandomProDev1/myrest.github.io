@@ -1,0 +1,64 @@
+{
+  "restaurant": "ZM Restaurant",
+  "logo": "images/logo.png",
+  "categories": [
+    {
+      "id": "warm-food",
+      "name": "Warm Food",
+      "image": "images/warm-food.jpg",
+      "description": "Hot prepared meals"
+    },
+    {
+      "id": "cold-food",
+      "name": "Cold Food",
+      "image": "images/cold-food.jpg",
+      "description": "Fresh chilled dishes"
+    },
+    {
+      "id": "drinks",
+      "name": "Drinks",
+      "image": "images/drinks.jpg",
+      "description": "Refreshing beverages"
+    },
+    {
+      "id": "hookah",
+      "name": "Hookah",
+      "image": "images/hookah.jpg",
+      "description": "Premium flavored tobacco"
+    }
+  ],
+  "items": [
+    {
+      "id": 1,
+      "name": "Margherita Pizza",
+      "description": "Classic pizza with tomato sauce and mozzarella",
+      "price": 12.99,
+      "category": "warm-food",
+      "image": "images/margherita.jpg"
+    },
+    {
+      "id": 2,
+      "name": "Caesar Salad",
+      "description": "Fresh romaine with Caesar dressing",
+      "price": 8.99,
+      "category": "cold-food",
+      "image": "images/caesar.jpg"
+    },
+    {
+      "id": 3,
+      "name": "Mojito",
+      "description": "Refreshing mint cocktail",
+      "price": 7.50,
+      "category": "drinks",
+      "image": "images/mojito.jpg"
+    },
+    {
+      "id": 4,
+      "name": "Double Apple Hookah",
+      "description": "Traditional apple flavored tobacco",
+      "price": 15.00,
+      "category": "hookah",
+      "image": "images/hookah-apple.jpg"
+    }
+  ]
+}
