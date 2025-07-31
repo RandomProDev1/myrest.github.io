@@ -1,47 +1,119 @@
 {
+  
   "restaurant": "ZM Restaurant",
   "logo": "images/logo.png",
+  
+  
   "categories": [
     {
-      "id": "warm-food",
-      "name": "Warm Food",
-      "image": "images/warm-food.jpg",
-      "description": "Hot prepared meals"
+      "id": "food",
+      "name": "Food",
+      "image": "images/food.jpg", 
+      "subcategories": [
+        {
+          "id": "warm-food",
+          "name": "Warm Food",
+          "image": "images/warm-food.jpg" 
+        },
+        {
+          "id": "cold-food",
+          "name": "Cold Food",
+          "image": "images/cold-food.jpg" 
+        },
+        {
+          "id": "appetizers",
+          "name": "Appetizers",
+          "image": "images/appetizers.jpg" 
+        },
+        {
+          "id": "desserts",
+          "name": "Desserts",
+          "image": "images/desserts.jpg" 
+        }
+      ]
     },
     {
-      "id": "cold-food",
-      "name": "Cold Food",
-      "image": "images/cold-food.jpg",
-      "description": "Fresh chilled dishes"
+      
+      "id": "hot-drink",
+      "name": "Hot Drink",
+      "image": "images/hot-drinks.jpg",
+      "subcategories": [
+        {
+          "id": "coffee",
+          "name": "Coffee",
+          "image": "images/coffee.jpg" 
+        },
+        {
+          "id": "tea",
+          "name": "Tea",
+          "image": "images/tea.jpg" 
+        },
+        {
+          "id": "hot-chocolate",
+          "name": "Hot Chocolate",
+          "image": "images/hot-chocolate.jpg" 
+        }
+      ]
     },
     {
-      "id": "drinks",
-      "name": "Drinks",
-      "image": "images/drinks.jpg",
-      "description": "Refreshing beverages"
+      
+      "id": "cold-drink",
+      "name": "Cold Drink",
+      "image": "images/drinks.jpg", 
+      "subcategories": [
+        {
+          "id": "juices",
+          "name": "Juices",
+          "image": "images/juices.jpg" 
+        },
+        {
+          "id": "smoothies",
+          "name": "Smoothies",
+          "image": "images/smoothies.jpg" 
+        },
+        {
+          "id": "soft-drinks",
+          "name": "Soft Drinks",
+          "image": "images/soft-drinks.jpg" 
+        }
+      ]
     },
     {
-      "id": "hookah",
-      "name": "Hookah",
-      "image": "images/hookah.jpg",
-      "description": "Premium flavored tobacco"
+     
+      "id": "shisha",
+      "name": "Shisha",
+      "image": "images/hookah.jpg", 
+      "subcategories": [
+        {
+          "id": "normal-shisha",
+          "name": "Normal Shisha",
+          "image": "images/normal-shisha.jpg" 
+        },
+        {
+          "id": "fresh-shisha",
+          "name": "Fresh Shisha",
+          "image": "images/fresh-shisha.jpg" 
+        }
+      ]
     }
   ],
+  
+  
   "items": [
     {
       "id": 1,
       "name": "Margherita Pizza",
       "description": "Classic pizza with tomato sauce and mozzarella",
       "price": 13000,
-      "category": "warm-food",
-      "image": "images/margherita.jpg"
+      "subcategory": "warm-food",
+      "image": "images/margherita.jpg" 
     },
     {
       "id": 2,
       "name": "Caesar Salad",
       "description": "Fresh romaine with Caesar dressing",
       "price": 7500,
-      "category": "cold-food",
+      "subcategory": "cold-food",
       "image": "images/caesar.jpg"
     },
     {
@@ -49,48 +121,79 @@
       "name": "Mojito",
       "description": "Refreshing mint cocktail",
       "price": 5000,
-      "category": "drinks",
-      "image": "images/mojito.jpg"
-    },
+      "subcategory": "cold-drink", 
+      "image": "images/mojito.jpg" },
     {
       "id": 4,
       "name": "Double Apple Hookah",
       "description": "Traditional apple flavored tobacco",
       "price": 12500,
-      "category": "hookah",
-      "image": "images/hookah-apple.jpg"
+      "subcategory": "normal-shisha", 
+      "image": "images/hookah-apple.jpg" 
     },
     {
       "id": 5,
       "name": "Harissa Grilled Chicken",
       "description": "Spicy North African marinated chicken with roasted vegetables",
       "price": 17000,
-      "category": "warm-food",
-      "image": "images/grilled-harrisa.jpg"
+      "subcategory": "warm-food",
+      "image": "images/grilled-harrisa.jpg" 
     },
     {
       "id": 6,
       "name": "Ahi Tuna Poke Bowl",
       "description": "Sashimi-grade tuna, avocado, edamame, and sesame over sushi rice",
       "price": 13500,
-      "category": "cold-food",
-      "image": "images/tuna-poke.jpg"
+      "subcategory": "cold-food",
+      "image": "images/tuna-poke.jpg" 
     },
     {
       "id": 7,
       "name": "Berry Hibiscus Fizz",
       "description": "Hibiscus tea with mixed berries and sparkling water",
       "price": 8500,
-      "category": "drinks",
-      "image": "images/berry-fizz.jpg"
+      "subcategory": "cold-drink", 
+      "image": "images/berry-fizz.jpg" 
     },
     {
       "id": 8,
-      "name": "Tropical Sunset",
+      "name": "Tropical Sunset Shisha",
       "description": "Mango, passionfruit, and coconut blend",
       "price": 13500,
-      "category": "hookah",
-      "image": "images/hookah-multi.jpg"
+      "subcategory": "fresh-shisha", 
+      "image": "images/hookah-multi.jpg" 
+    },
+    {
+      "id": 9,
+      "name": "Espresso",
+      "description": "Strong black coffee",
+      "price": 3500,
+      "subcategory": "coffee", 
+      "image": "images/espresso.jpg" 
+    },
+    {
+      "id": 10,
+      "name": "Hot Chocolate",
+      "description": "Rich chocolate with steamed milk",
+      "price": 4500,
+      "subcategory": "hot-chocolate", 
+      "image": "images/hot-chocolate.jpg" 
+    },
+    {
+      "id": 11,
+      "name": "Orange Juice",
+      "description": "Freshly squeezed oranges",
+      "price": 3000,
+      "subcategory": "juices", 
+      "image": "images/orange-juice.jpg" 
+    },
+    {
+      "id": 12,
+      "name": "Peppermint Fresh Shisha",
+      "description": "Cooling mint tobacco blend",
+      "price": 14500,
+      "subcategory": "fresh-shisha", 
+      "image": "images/peppermint-shisha.jpg"
     }
   ]
 }

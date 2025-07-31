@@ -4,10 +4,12 @@ const backButton = document.getElementById('back-button');
 const categoriesView = document.getElementById('categories-view');
 const itemsView = document.getElementById('items-view');
 const currentCategory = document.getElementById('current-category');
+const subcategoriesView = document.getElementById('subcategories-view');
 
 // State Management
 let menuData = {};
 let currentCategoryId = null;
+let currentSubcategoryId = null;
 
 // Initialize Menu
 async function initMenu() {
@@ -22,14 +24,14 @@ async function initMenu() {
     renderCategories();
     
     // Set up back button
-    backButton.addEventListener('click', showCategoriesView);
+    backButton.addEventListener('click', handleBackButton);
   } catch (error) {
     console.error('Error loading menu:', error);
     categoriesView.innerHTML = `<p class="text-red-500 text-center col-span-full py-12">Menu failed to load. Please try again later.</p>`;
   }
 }
 
-// Render Categories as Cards
+// Render Main Categories
 function renderCategories() {
   categoriesView.innerHTML = '';
   
@@ -43,42 +45,95 @@ function renderCategories() {
       </div>
       <div class="p-4 sm:p-6">
         <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-1">${category.name}</h3>
-        <p class="text-gray-600 text-sm sm:text-base line-clamp-2">${category.description}</p>
       </div>
     `;
     
-    categoryCard.addEventListener('click', () => showCategoryItems(category.id));
+    categoryCard.addEventListener('click', () => showSubcategories(category.id));
     categoriesView.appendChild(categoryCard);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 
-// Show Items for a Specific Category
-function showCategoryItems(categoryId) {
+// Show Subcategories for a Main Category
+function showSubcategories(categoryId) {
   currentCategoryId = categoryId;
   
-  // Find category name
+  // Find category
   const category = menuData.categories.find(cat => cat.id === categoryId);
   
   // Update UI
   categoriesView.classList.add('hidden');
-  itemsView.classList.remove('hidden');
+  subcategoriesView.classList.remove('hidden');
   backButton.classList.remove('hidden');
   currentCategory.textContent = category.name;
   currentCategory.classList.remove('hidden');
   
-  // Render items
-  renderItems();
-  // FIX: Scroll to top of the page
+  // Render subcategories
+  renderSubcategories();
+  
+  // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Show Categories View
-function showCategoriesView() {
-  itemsView.classList.add('hidden');
-  categoriesView.classList.remove('hidden');
-  backButton.classList.add('hidden');
-  currentCategory.classList.add('hidden');
+// Render Subcategories
+function renderSubcategories() {
+  subcategoriesView.innerHTML = '';
+  
+  const category = menuData.categories.find(cat => cat.id === currentCategoryId);
+  
+  category.subcategories.forEach(subcategory => {
+    const subcategoryCard = document.createElement('div');
+    subcategoryCard.className = 'card-hover bg-white rounded-xl shadow-md overflow-hidden cursor-pointer animate-fade-in';
+    subcategoryCard.innerHTML = `
+      <div class="aspect-square overflow-hidden">
+        <img src="${subcategory.image}" alt="${subcategory.name}" 
+             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
+      </div>
+      <div class="p-4 sm:p-6">
+        <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-1">${subcategory.name}</h3>
+      </div>
+    `;
+    
+    subcategoryCard.addEventListener('click', () => showCategoryItems(subcategory.id));
+    subcategoriesView.appendChild(subcategoryCard);
+  });
+}
+
+// Show Items for a Specific Subcategory
+function showCategoryItems(subcategoryId) {
+  currentSubcategoryId = subcategoryId;
+  
+  // Find subcategory name
+  const category = menuData.categories.find(cat => cat.id === currentCategoryId);
+  const subcategory = category.subcategories.find(sub => sub.id === subcategoryId);
+  
+  // Update UI
+  subcategoriesView.classList.add('hidden');
+  itemsView.classList.remove('hidden');
+  currentCategory.textContent = `${category.name} - ${subcategory.name}`;
+  
+  // Render items
+  renderItems();
+  
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// Handle Back Button Navigation
+function handleBackButton() {
+  if (itemsView.classList.contains('hidden') === false) {
+    // If we're in items view, go back to subcategories
+    itemsView.classList.add('hidden');
+    subcategoriesView.classList.remove('hidden');
+    currentCategory.textContent = menuData.categories.find(cat => cat.id === currentCategoryId).name;
+  } else if (subcategoriesView.classList.contains('hidden') === false) {
+    // If we're in subcategories view, go back to main categories
+    subcategoriesView.classList.add('hidden');
+    categoriesView.classList.remove('hidden');
+    backButton.classList.add('hidden');
+    currentCategory.classList.add('hidden');
+  }
+  
+  // Scroll to top
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
@@ -86,7 +141,7 @@ function showCategoriesView() {
 function renderItems() {
   itemsView.innerHTML = '';
 
-  const filteredItems = menuData.items.filter(item => item.category === currentCategoryId);
+  const filteredItems = menuData.items.filter(item => item.subcategory === currentSubcategoryId);
 
   if (filteredItems.length === 0) {
     itemsView.innerHTML = `
@@ -103,7 +158,6 @@ function renderItems() {
     itemElement.className = 'card-hover bg-white rounded-xl shadow-md overflow-hidden animate-fade-in flex flex-col';
     
     itemElement.innerHTML = `
-      <!-- Image container: square aspect ratio -->
       <div class="aspect-square overflow-hidden">
         <img src="${item.image}" alt="${item.name}" 
              class="w-full h-full object-cover transition-transform duration-500 hover:scale-110">
@@ -116,12 +170,6 @@ function renderItems() {
         </div>
         
         <p class="text-gray-600 text-sm line-clamp-2 sm:line-clamp-3 mb-3 flex-grow">${item.description}</p>
-        
-        <div class="mt-auto">
-          <span class="text-xs px-2 py-1 bg-gray-100 text-gray-500 rounded-full">
-            ${menuData.categories.find(cat => cat.id === item.category).name}
-          </span>
-        </div>
       </div>
     `;
     
@@ -132,5 +180,15 @@ function renderItems() {
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', initMenu);
 
+// Check for menu updates
+async function checkForUpdates() {
+  const response = await fetch('menu.json');
+  const newData = await response.json();
+  if (JSON.stringify(newData) !== JSON.stringify(menuData)) {
+    menuData = newData;
+    renderCategories();
+  }
+}
 
-
+// Check every 5 minutes
+setInterval(checkForUpdates, 300000);
